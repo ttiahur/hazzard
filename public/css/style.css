@@ -1,0 +1,70 @@
+.pacman1 {
+    width: 0px;
+    height: 0px;
+    border-right: 60px solid transparent;
+    border-top: 60px solid red;
+    border-left: 60px solid red;
+    border-bottom: 60px solid red;
+    border-top-left-radius: 60px;
+    border-top-right-radius: 60px;
+    border-bottom-left-radius: 60px;
+    border-bottom-right-radius: 60px;
+}
+#pacman2 {
+    width: 0px;
+    height: 0px;
+    border-right: 60px solid transparent;
+    border-top: 60px solid green;
+    border-left: 60px solid green;
+    border-bottom: 60px solid green;
+    border-top-left-radius: 120px;
+    border-top-right-radius: 180px;
+    border-bottom-left-radius: 60px;
+    border-bottom-right-radius: 60px;
+}
+#pacman3 {
+    width: 0px;
+    height: 0px;
+    border-right: 60px solid transparent;
+    border-top: 60px solid blue;
+    border-left: 60px solid blue;
+    border-bottom: 60px solid blue;
+    border-top-left-radius: 180px;
+    border-top-right-radius: 240px;
+    border-bottom-left-radius: 60px;
+    border-bottom-right-radius: 60px;
+}
+.button2 {
+    background-color: red;
+}
+.bg {
+    /* The image used */
+
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+@media (min-width: 768px) {
+    .sidebar-nav-menu .navbar .navbar-collapse {
+        padding: 0;
+        max-height: none;
+    }
+    .sidebar-nav-menu .navbar ul {
+        float: none;
+        display: block;
+    }
+    .sidebar-nav-menu .navbar li {
+        float: none;
+        display: block;
+    }
+    .sidebar-nav-menu .navbar li a {
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+}
