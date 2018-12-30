@@ -47,3 +47,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 //BetController
 Route::get('/add-bet/{id}', 'admin\BetController@add');
 Route::get('/auto-bet/{id}', 'admin\BetController@addAuto');
+Route::post('/confirm-bet/{id}','admin\BetController@confirmBet');

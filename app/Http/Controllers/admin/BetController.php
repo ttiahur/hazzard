@@ -11,16 +11,25 @@ use App\Http\Controllers\Controller;
 
 class BetController extends Controller
 {
-    public function addAuto(Request $request){
+    public function addAuto(Request $request)
+    {
         $id = $request->route('id');
         BetManager::autoBet($id);
     }
 
-    public function add(Request $request){
-        $id = $request->route('id');        
+    public function add(Request $request)
+    {
+        $id = $request->route('id');
         $data = BetManager::addBet($id);
         return response()->json($data);
+    }
 
-//        return view
+    public function confirmBet(Request $request)
+    {
+        $id = $request->route('id');
+        $points = $request->post('points');
+        $result = BetManager::confirmBet($id, $points);
+        return response()->json($result);
+
     }
 }

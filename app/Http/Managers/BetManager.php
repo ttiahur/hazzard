@@ -46,4 +46,24 @@ class BetManager
       $deal->current_point+=$points;
       $deal->save();
   }
+
+  static public function confirmBet($id, $points){
+        $betParams = self::addBet($id);
+        if ($points<=$betParams['maxPoints']){
+            $deal = Deals::find($id);
+            $bet = new Bets();
+            $bet->deal_id = $id;
+            $bet->points =$points;
+            $bet->point_start = $deal->current_point+1;
+            $bet->point_end = $deal->current_point+$points;
+            $bet->user_id = auth()->user()->id;
+            $bet->save();
+            $deal->current_point+=$points;
+            $deal->save();
+            return ['success' => true];
+        }
+        else {
+            return ['success' => false];
+        }
+  }
 }
