@@ -25,4 +25,13 @@ class Bets extends Model
             ->select()
             ->get();
     }
+
+    static public function userHistory($id){
+        return DB::table('bets')->orderByDesc('points')
+            ->where('user_id', $id)
+            ->select()
+            ->get();
+    }
+
+
 }

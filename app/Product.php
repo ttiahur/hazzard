@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class Product
@@ -19,5 +20,10 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Product extends Model
 {
-
+static function idToName($id){
+    return DB::table('products')
+        ->select('name')
+        ->where('product_id',$id)
+        ->get();
+}
 }

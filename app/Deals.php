@@ -42,4 +42,11 @@ class Deals extends Model
 
         return $product;
     }
+
+    static public function idToProductId($id){
+        return $name = DB::table('deals')
+            ->select('product_id')
+            ->where('id',$id)
+            ->get();
+    }
 }

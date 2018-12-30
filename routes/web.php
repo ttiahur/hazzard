@@ -48,3 +48,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/add-bet/{id}', 'admin\BetController@add');
 Route::get('/auto-bet/{id}', 'admin\BetController@addAuto');
 Route::post('/confirm-bet/{id}','admin\BetController@confirmBet');
+
+//UserController
+Route::get('/account','UserController@show')->name('account');
+Route::get('/history','UserController@history')->name('history');
+
