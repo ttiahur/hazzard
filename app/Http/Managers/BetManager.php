@@ -60,6 +60,10 @@ class BetManager
             $bet->save();
             $deal->current_point+=$points;
             $deal->save();
+            User::subPoints($points);
+//            $user = new User();
+//            $user = $user->find($bet->user_id );
+//            $user->subPoints($points);
             return ['success' => true];
         }
         else {

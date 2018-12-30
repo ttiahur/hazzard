@@ -6,6 +6,12 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+
+/**
+ * Class User
+ * @package App
+ * @property integer $points
+ */
 class User extends Authenticatable
 {
     use Notifiable;
@@ -27,4 +33,18 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    static public function subPoints($points){
+        $user  = User::find(auth()->user()->id);
+        $user->points -= $points;
+        $user->save();
+        return true;
+    }
+
+    static public function addPoints($points){
+        $user  = User::find(auth()->user()->id);
+        $user->points += $points;
+        $user->save();
+        return true;
+    }
 }
