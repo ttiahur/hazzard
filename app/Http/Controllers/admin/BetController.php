@@ -17,7 +17,7 @@ class BetController extends Controller
     }
 
     public function add(Request $request){
-        $id = $request->route('id');
+        $id = $request->route('id');        
         $data = BetManager::addBet($id);
         return response()->json($data);
 
