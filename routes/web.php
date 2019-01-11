@@ -50,6 +50,7 @@ Route::get('/auto-bet/{id}', 'admin\BetController@addAuto');
 Route::post('/confirm-bet/{id}','admin\BetController@confirmBet');
 
 //UserController
-Route::get('/account','UserController@show')->name('account');
+Route::get('/account','UserController@account')->name('account');
 Route::get('/history','UserController@history')->name('history');
+Route::post('/update-user','UserController@update')->name('update-user');
 

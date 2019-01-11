@@ -19,9 +19,8 @@
         <tr>
             <th scope="row">{{$i++}}</th>
             <td>{{$name}}</td>
-            <td><a href="/edit-category/{{$id}}" class="">Edit</a></td>
-            <td><a href="/delete-category/{{$id}}" class="">Delete</a></td>
-
+            <td><a href="/edit-category/{{$id}}" class=""><i class="far fa-edit"></i>Edit</a></td>
+            <td><a href="/delete-category/{{$id}}" class=""><i class="far fa-trash-alt"></i>Delete</a></td>
         </tr>
     @endforeach
         </tbody>
