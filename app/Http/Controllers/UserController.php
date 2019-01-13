@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Bets;
 use App\Deals;
 use App\Http\Managers\UserManager;
+use App\Http\Managers\UserStatManager;
 use App\Product;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,9 @@ class UserController extends Controller
     {
         $data = [
             'user' => UserManager::account(),
+            'stat' => new UserStatManager(),
         ];
+//        var_dump($data['stat']);
         return view('user.account', $data);
     }
 

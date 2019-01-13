@@ -9,6 +9,7 @@
 namespace App\Http\Managers;
 
 
+use App\Bets;
 use App\User;
 use http\Env\Request;
 use Illuminate\Support\Facades\Hash;
@@ -42,10 +43,11 @@ class UserManager
 
         $password = $request->post('password');
         $password2 = $request->post('password2');
-        if (strlen($password)>=6 && $password === $password2) {
+        if (strlen($password) >= 6 && $password === $password2) {
             $user->password = Hash::make($password);
         }
         $user->save();
         return $user;
     }
+
 }

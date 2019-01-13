@@ -23,7 +23,7 @@ class BetManager
       $product = $product[0];
 
       $maxPoints = ($deal->current_point+$user->points) >= $product->points ? $product->points - $deal->current_point : $user->points;
-      $maxPoints = $maxPoints<0 ? 0 :$maxPoints;
+      $maxPoints = $maxPoints<0 ? 0 : $maxPoints;
 
       return [
           'user' => $user,
@@ -51,6 +51,8 @@ class BetManager
         $betParams = self::addBet($id);
         if ($points<=$betParams['maxPoints']){
             $deal = Deals::find($id);
+            $product = Product::where('product_id', $deal->product_id)->get();
+            $product = $product[0];
             $bet = new Bets();
             $bet->deal_id = $id;
             $bet->points =$points;
@@ -59,12 +61,20 @@ class BetManager
             $bet->user_id = auth()->user()->id;
             $bet->save();
             $deal->current_point+=$points;
+            $current_points = $deal->current_point;
             $deal->save();
             User::subPoints($points);
+            if ($current_points == $product->points){
+                $winner = DealManager::complete($id);
+            }
 //            $user = new User();
 //            $user = $user->find($bet->user_id );
 //            $user->subPoints($points);
-            return ['success' => true];
+            return ['success' => true,
+                    'curent' => $current_points,
+                    'product' => $product->points,
+                    'winer' => isset($winner)? $winner : false,
+            ];
         }
         else {
             return ['success' => false];

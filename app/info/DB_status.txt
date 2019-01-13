@@ -1,0 +1,17 @@
+Deals:
+0 - active;
+1 - comleate;
+2 - contacted with winner;
+3 - send product to winner;
+4 - winner confirm product delivery;
+5 - closed;
+Bets:
+0 - active;
+1 - realased and lose;
+2 - realesed and win;
+Users:
+0 - active;
+1 - admin;
+2 - moderator;
+3 - deleted;
+4 - bot;
