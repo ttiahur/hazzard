@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-
+    <div id="chartdiv"></div>
     <table class="table">
         <thead>
         <tr>
@@ -25,5 +25,4 @@
         @endforeach
         </tbody>
     </table>
-
 @endsection

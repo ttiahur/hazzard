@@ -11,7 +11,6 @@
 |
 */
 
-use App\Http\Controllers;
 
 Route::get('/', 'IndexController@show')->name('show');
 Route::get('/home', 'IndexController@home')->name('home');
@@ -53,4 +52,5 @@ Route::post('/confirm-bet/{id}','admin\BetController@confirmBet');
 Route::get('/account','UserController@account')->name('account');
 Route::get('/history','UserController@history')->name('history');
 Route::post('/update-user','UserController@update')->name('update-user');
+Route::post('/analytics','UserController@analytics');
 

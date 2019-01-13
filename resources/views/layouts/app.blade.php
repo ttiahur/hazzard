@@ -15,6 +15,11 @@
     <script src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
     <!--<script src="{{ asset('js/material-kit.min.js') }}"></script>-->
 
+    <!-- Chrars -->
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">

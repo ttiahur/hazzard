@@ -17,13 +17,13 @@
 
                 <ul class="list-group mb-4">
                     <li class="list-group-item text-muted"><i class="fas fa-chart-line"></i> Activity <i class="fa fa-dashboard fa-1x"></i></li>
-                    <li class="list-group-item text-right"><span class="float-left" id="addPoints"><i class="fas fa-history"></i></span><span class="pull-left"><strong>Spend points</strong></span> {{$stat->getSpendPoints()}}</li>
-                    <li class="list-group-item text-right"><span class="float-left" id="addPoints"><i class="fas fa-history"></i></span><span class="pull-left"><strong>Avg bet</strong></span> {{$stat->getAvgBet()}}</li>
-                    <li class="list-group-item text-right"><span class="float-left" id="addPoints"><i class="fas fa-history"></i></span><span class="pull-left"><strong>Avg chance</strong></span> {{substr($stat->getAvgChance(),0,6)}}</li>
-                    <li class="list-group-item text-right"><span class="float-left" id="addPoints"><i class="fas fa-history"></i></span><span class="pull-left"><strong>Bets</strong></span> {{$stat->getRealasedBets()}}</li>
+                    <li class="list-group-item text-right"><span class="float-left chart" id="points"><a href="#" class="text-dark"><i class="fas fa-history"></i></a></span><span class="pull-left"><strong>Spend points</strong></span> {{$stat->getSpendPoints()}}</li>
+                    <li class="list-group-item text-right"><span class="float-left chart" id="avgPoints"><i class="fas fa-history"></i></span><span class="pull-left"><strong>Avg bet</strong></span> {{$stat->getAvgBet()}}</li>
+                    <li class="list-group-item text-right"><span class="float-left chart" id="avgChance"><i class="fas fa-history"></i></span><span class="pull-left"><strong>Avg chance</strong></span> {{substr($stat->getAvgChance(),0,6)}}</li>
+                    <li class="list-group-item text-right"><span class="float-left chart" id="bets"><a href="#" class="text-dark"><i class="fas fa-history"></i></a></span><span class="pull-left"><strong>Bets</strong></span> {{$stat->getRealasedBets()}}</li>
                     @if($stat->getWins())
-                    <li class="list-group-item text-right"><span class="float-left" id="addPoints"><i class="fas fa-history"></i></span><span class="pull-left"><strong>Wins</strong></span> {{$stat->getWins()}}</li>
-                        @endif
+                    <li class="list-group-item text-right"><span class="float-left" id="wins"><i class="fas fa-history"></i></span><span class="pull-left"><strong>Wins</strong></span> {{$stat->getWins()}}</li>
+                    @endif
                 </ul>
 
                 <ul class="list-group mb-4">
@@ -133,4 +133,48 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+
+        $('.chart').click(function () {
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            var category =$(this).attr('id');
+            console.log(category);
+            $.ajax({
+                    url: '/analytics' ,
+                    dataType: 'json',
+                    type: 'post',
+                    data:{_token: CSRF_TOKEN,"category":category},
+                    success: function (data) {
+                        Swal({
+                            title: '<strong>Spend points</u></strong>',
+                            html:
+                                '<div id="chartdiv"></div>',
+                            width: 800,
+                            showCloseButton: true,
+                            showCancelButton: false,
+                            showConfirmButton: false,
+                            focusConfirm: false,
+                        })
+                        // Themes begin
+                        am4core.useTheme(am4themes_animated);
+                        // Themes end
+
+                        var chart = am4core.create("chartdiv", am4charts.PieChart3D);
+                        chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
+
+                        chart.legend = new am4charts.Legend();
+                        chart.data = data;
+                        chart.innerRadius = 75;
+
+                        var series = chart.series.push(new am4charts.PieSeries3D());
+                        series.dataFields.value = "points";
+                        series.dataFields.category = "category";
+                    }
+                }
+            )
+
+        })
+    </script>
+
 @endsection

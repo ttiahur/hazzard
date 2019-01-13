@@ -33,6 +33,7 @@ class UserStatManager
         $this->setActiveBets();
         $this->setAvgBet();
         $this->setAvgChance();
+        $this->setWins();
     }
 
     /**
