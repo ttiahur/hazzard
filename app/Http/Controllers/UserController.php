@@ -37,7 +37,6 @@ class UserController extends Controller
 
     public function history()
     {
-
         $history = Bets::userHistory(auth()->user()->id)->toArray();
         foreach ($history as &$bet) {
             $bet->deal_id = Deals::idToProductId($bet->deal_id)->toArray()[0]->product_id;

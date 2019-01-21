@@ -9,6 +9,7 @@ Bets:
 0 - active;
 1 - realased and lose;
 2 - realesed and win;
+3 - confirm win;
 Users:
 0 - active;
 1 - admin;

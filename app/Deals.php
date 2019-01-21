@@ -29,6 +29,7 @@ class Deals extends Model
     {
         if ($id==null){
             $product = DB::table('deals')
+                ->where('status','=',0)
                 ->leftjoin('products', 'deals.product_id', '=', 'products.product_id')
                 ->select()
                 ->get();

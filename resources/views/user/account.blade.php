@@ -5,7 +5,10 @@
         <div class="row">
             <div class="col-sm-4"><!--left col-->
 
-
+                <div class="row">
+                    <div id="dropzone">
+                    </div>
+                </div>
                 <div class="text-center">
                     <img src="/images/user.png" class="avatar img-circle img-thumbnail"
                          alt="avatar">
@@ -176,5 +179,44 @@
 
         })
     </script>
+    <script>
+        $(document).ready(function () {
+            $('#dropzone').dropzone(
+                {
+                    url: "/file/post",
+                    paramName: "file", // The name that will be used to transfer the file
+                    maxFiles: 1,
+                    accept: function(file, done) {
+                        alert('succes');
+                        if (file.name == "justinbieber.jpg") {
+                            done("Naha, you don't.");
+                        }
+                        else { done(); }
+                    }
+                });
+        });
+        $("myAwesomeDropzone").dropzone({ url: "/file/post" });
+    </script>
+
+    <script type="text/javascript">
+            Dropzone.options.myAwesomeDropzone = {
+                paramName: "file", // The name that will be used to transfer the file
+                maxFiles: 1,
+                accept: function(file, done) {
+                    if (file.name == "justinbieber.jpg") {
+                        done("Naha, you don't.");
+                    }
+                    else { done(); }
+                }
+            };
+
+    </script>
+    {{--<style>--}}
+        {{--#dropzone{--}}
+            {{--width: 300px !important;--}}
+            {{--height: 300px !important;--}}
+        {{--}--}}
+    {{--</style>--}}
+
 
 @endsection

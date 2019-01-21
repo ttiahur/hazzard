@@ -157,4 +157,13 @@ class Bets extends Model
             ->get();
     }
 
+    static public function notConfirmedBet(){
+        return DB::table('bets')
+            ->where([
+                ['user_id','=', auth()->user()->id],
+                ['status','=',2],
+            ])
+            ->first();
+    }
+
 }

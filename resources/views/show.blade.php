@@ -38,6 +38,54 @@
             @endforeach
         </div>
     </div>
+    @if($win !=null)
+        <script>
+            $(document).ready(function () {
+                Swal({
+                    title: '<strong>Congratulation!!!<br>Dear {{$win['user']->name.' '.$win['user']->surname}}<br> You win {{$win['product']->name}}</strong>',
+                    html:
+                        {{--+ '<meta name="csrf-token" content="{{ csrf_token() }}" />'--}}
+                        '<fieldset class="border p-3 mb-4">'
+                        +'<legend class="w-auto"><i class="fas fa-map-marker-alt"></i> Set delivery adress</legend>'
+                    +'<div class="form-group">'
+                    +'<div class="col-xs-6">'
+                    +'<label class="float-left" for="city"><h4>City</h4></label>'
+                +'<input type="text" class="form-control" name="city" id="city"'
+                +'value="{{$win['user']->city}}" placeholder="enter city name" title="enter your city name">'
+                    +'</div>'
+                    +'</div>'
+                    +'<div class="form-group">'
+                    +'<div class="col-xs-6">'
+                    +'<label class="float-left" for="street"><h4>Street</h4></label>'
+                +'<input type="text" class="form-control" name="street" id="street"'
+                +'value="{{$win['user']->street}}" placeholder="enter street and number of house" title="enter your street and number of house">'
+                    +'</div>'
+                    +'</div>'
+                    +'<div class="form-group">'
+                    +'<div class="col-xs-6">'
+                    +'<label class="float-left" for="post_code"><h4>Post code</h4></label>'
+                +'<input type="text" class="form-control" name="post_code" id="post_code"'
+                +'value="{{$win['user']->post_code}}" placeholder="enter post code" title="enter your post code">'
+                    +'</div>'
+                    +'</div>'
+                   +'</fieldset>'
+                        + '<div class="col-md-12 col-sm-12 py-1">'
+                        + '<button class="btn btn-success w-100 set-bet" id_deal="'  + '" type="button"> Confirm </button>'
+                        + '</div>'
+                        + '<div class="col-md-12 col-sm-12 py-1">'
+                        + '<button class="btn btn-danger w-100 set-bet" id_deal="'  + '" type="button"> Exit </button>'
+                        + '</div>'
+                        + '</div>'
+                        + '</div>',
+                    showCloseButton: true,
+                    showConfirmButton: false,
+                    showCancelButton: false,
+                    focusConfirm: false,
+                    cancelButtonAriaLabel: 'Thumbs down',
+                })
+            })
+        </script>
+    @endif
     <script type="text/javascript">
         $('.bet').click(function () {
             var id = $(this).attr('bet_id');
@@ -46,8 +94,6 @@
                 dataType: 'json',
                 type: 'get',
                 success: function (data) {
-                    console.log(data.product.points);
-
                     Swal({
                         title: '<strong>Take a bet</strong>',
                         html:
