@@ -99,7 +99,7 @@ class Bets extends Model
     {
         return DB::table('bets')
             ->where([
-                ['status', '=', 2],
+                ['status', '>=', 2],
                 ['user_id', '=', $id]
             ])
             ->count('status');
@@ -162,6 +162,15 @@ class Bets extends Model
             ->where([
                 ['user_id','=', auth()->user()->id],
                 ['status','=',2],
+            ])
+            ->first();
+    }
+
+    static public function winBetByDealId($id){
+        return DB::table('bets')
+            ->where([
+                ['deal_id', '=', $id],
+                ['status', '=', 2]
             ])
             ->first();
     }

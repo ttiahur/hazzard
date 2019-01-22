@@ -54,3 +54,5 @@ Route::get('/history','UserController@history')->name('history');
 Route::post('/update-user','UserController@update')->name('update-user');
 Route::post('/analytics','UserController@analytics');
 
+//DeliveryController
+Route::post('/confirm-bet','DeliveryController@setAdress');

@@ -13,8 +13,9 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
+    <script src="{{ asset('js/sorttable.js') }}"></script>
     <script src="{{ asset('js/dropzone.js') }}"></script>
-    <!--<script src="{{ asset('js/material-kit.min.js') }}"></script>-->
+<!--<script src="{{ asset('js/material-kit.min.js') }}"></script>-->
 
 
     <!-- Chrars -->
@@ -76,7 +77,6 @@
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
-
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('account') }}">
                                     Account

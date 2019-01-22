@@ -1,4 +1,4 @@
-@extends('layouts.app');
+@extends('layouts.app')
 
 @section('content')
     <script src="{{ asset('js/betScript.js') }}"></script>
@@ -44,8 +44,8 @@
                 Swal({
                     title: '<strong>Congratulation!!!<br>Dear {{$win['user']->name.' '.$win['user']->surname}}<br> You win {{$win['product']->name}}</strong>',
                     html:
-                        {{--+ '<meta name="csrf-token" content="{{ csrf_token() }}" />'--}}
-                        '<fieldset class="border p-3 mb-4">'
+                        '<meta name="csrf-token" content="{{ csrf_token() }}" />'
+                        +'<fieldset class="border p-3 mb-4">'
                         +'<legend class="w-auto"><i class="fas fa-map-marker-alt"></i> Set delivery adress</legend>'
                     +'<div class="form-group">'
                     +'<div class="col-xs-6">'
@@ -70,10 +70,10 @@
                     +'</div>'
                    +'</fieldset>'
                         + '<div class="col-md-12 col-sm-12 py-1">'
-                        + '<button class="btn btn-success w-100 set-bet" id_deal="'  + '" type="button"> Confirm </button>'
+                        + '<button class="btn btn-success w-100 confirm-win" id_deal="{{$win['deal']->id}}" type="button"> Confirm </button>'
                         + '</div>'
                         + '<div class="col-md-12 col-sm-12 py-1">'
-                        + '<button class="btn btn-danger w-100 set-bet" id_deal="'  + '" type="button"> Exit </button>'
+                        + '<button class="btn btn-danger w-100 cancel-win" type="button"> Exit </button>'
                         + '</div>'
                         + '</div>'
                         + '</div>',
@@ -171,7 +171,6 @@
                                 'Bet not confirmed!',
                                 'You bet to offer ' + dealName + ' error',
                                 'error'
-
                             )
                         }
 
@@ -180,5 +179,36 @@
             )
         })
 
+    </script>
+    <script>
+        $(document).on('click','.confirm-win',function () {
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            id = $('.confirm-win').attr('id_deal');
+            street = $('#street').val();
+            city = $('#city').val();
+            post_code = $('#post_code').val();
+            $.ajax({
+                url: '/confirm-bet',
+                dataType: 'json',
+                type: 'post',
+                data: {_token: CSRF_TOKEN, "id": id, "street": street, "city":city, "post_code" : post_code},
+                success: function (data) {
+                    swal.close();
+                    if (data){
+                        Swal(
+                            'Confirmed!',
+                            'You delivery adress: ' + street + ', ' + city + ' ' + post_code,
+                            'success'
+                        )
+                    } else {
+                        Swal(
+                            'Error',
+                            'Delivery adress not confirmed!',
+                            'error'
+                        )
+                    }
+                }
+            })
+        })
     </script>
 @endsection

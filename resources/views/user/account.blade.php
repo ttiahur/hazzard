@@ -21,18 +21,18 @@
                 <ul class="list-group mb-4">
                     <li class="list-group-item text-muted"><i class="fas fa-chart-line"></i> Activity <i class="fa fa-dashboard fa-1x"></i></li>
                     <li class="list-group-item text-right"><span class="float-left chart" id="points"><a href="#" class="text-dark"><i class="fas fa-history"></i></a></span><span class="pull-left"><strong>Spend points</strong></span> {{$stat->getSpendPoints()}}</li>
-                    <li class="list-group-item text-right"><span class="float-left chart" id="avgPoints"><i class="fas fa-history"></i></span><span class="pull-left"><strong>Avg bet</strong></span> {{$stat->getAvgBet()}}</li>
-                    <li class="list-group-item text-right"><span class="float-left chart" id="avgChance"><i class="fas fa-history"></i></span><span class="pull-left"><strong>Avg chance</strong></span> {{substr($stat->getAvgChance(),0,6)}}</li>
+                    <li class="list-group-item text-right"><span class="float-left chart" id="avgPoints"><a href="#" class="text-dark"><i class="fas fa-history"></i></a></span><span class="pull-left"><strong>Avg bet</strong></span> {{$stat->getAvgBet()}}</li>
+                    <li class="list-group-item text-right"><span class="float-left chart" id="avgChance"><a href="#" class="text-dark"><i class="fas fa-history"></i></a></span><span class="pull-left"><strong>Avg chance</strong></span> {{substr($stat->getAvgChance(),0,6)}}</li>
                     <li class="list-group-item text-right"><span class="float-left chart" id="bets"><a href="#" class="text-dark"><i class="fas fa-history"></i></a></span><span class="pull-left"><strong>Bets</strong></span> {{$stat->getRealasedBets()}}</li>
                     @if($stat->getWins())
-                    <li class="list-group-item text-right"><span class="float-left" id="wins"><i class="fas fa-history"></i></span><span class="pull-left"><strong>Wins</strong></span> {{$stat->getWins()}}</li>
+                    <li class="list-group-item text-right"><span class="float-left" id="wins"><a href="#" class="text-dark"><i class="fas fa-history"></i></a></span><span class="pull-left"><strong>Wins</strong></span> {{$stat->getWins()}}</li>
                     @endif
                 </ul>
 
                 <ul class="list-group mb-4">
                     <li class="list-group-item text-muted"><i class="fas fa-money-bill"></i> Points <i class="fa fa-dashboard fa-1x"></i></li>
-                    <li class="list-group-item text-right"><span class="float-left"><i class="fas fa-history"></i></span><span class="pull-left"><strong>Frozen</strong></span> {{$stat->getFrozenPoints()}}</li>
-                    <li class="list-group-item text-right"><span class="float-left" id="addPoints"><i class="fas fa-plus"></i></span><span class="pull-left"><strong>Avalible</strong></span> {{$user->points}}</li>
+                    <li class="list-group-item text-right"><span class="float-left"><a href="#" class="text-dark"><i class="fas fa-history"></i></a></span><span class="pull-left"><strong>Frozen</strong></span> {{$stat->getFrozenPoints()}}</li>
+                    <li class="list-group-item text-right"><span class="float-left" id="addPoints"><a href="#" class="text-dark"><i class="fas fa-plus"></i></a></span><span class="pull-left"><strong>Avalible</strong></span> {{$user->points}}</li>
                 </ul>
 
             </div><!--/col-3-->
@@ -150,7 +150,7 @@
                     data:{_token: CSRF_TOKEN,"category":category},
                     success: function (data) {
                         Swal({
-                            title: '<strong>Spend points</u></strong>',
+                            title: '<strong>You chart</u></strong>',
                             html:
                                 '<div id="chartdiv"></div>',
                             width: 800,
@@ -211,12 +211,6 @@
             };
 
     </script>
-    {{--<style>--}}
-        {{--#dropzone{--}}
-            {{--width: 300px !important;--}}
-            {{--height: 300px !important;--}}
-        {{--}--}}
-    {{--</style>--}}
 
 
 @endsection
