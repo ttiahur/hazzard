@@ -1,8 +1,14 @@
 @extends('layouts.app')
 @section('content')
-
-    <a href="/add-category" class="">Add category</a>
-    <table class="table">
+    <div class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Category list</li>
+            <li class="breadcrumb-item"><a href="/add-category">Add category</a></li>
+        </ol>
+    </nav>
+    <table class="table sortable">
         <thead>
         <tr>
             <th scope="col">Number</th>
@@ -25,5 +31,5 @@
     @endforeach
         </tbody>
     </table>
-
+    </div>
     @endsection

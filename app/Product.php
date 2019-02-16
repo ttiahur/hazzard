@@ -20,10 +20,21 @@ use Illuminate\Support\Facades\DB;
  */
 class Product extends Model
 {
-static function idToName($id){
-    return DB::table('products')
-        ->select('name')
-        ->where('product_id',$id)
-        ->get();
-}
+    protected $primaryKey = 'product_id';
+
+
+    static function idToName($id)
+    {
+        return DB::table('products')
+            ->select('name')
+            ->where('product_id', $id)
+            ->get();
+    }
+
+    static public function productsByCategory($category_id){
+        return DB::table('products')
+            ->select()
+            ->where('category_id',$category_id)
+            ->get();
+    }
 }

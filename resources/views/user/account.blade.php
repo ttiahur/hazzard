@@ -3,7 +3,7 @@
     <div class="container bootstrap snippet">
 
         <div class="row">
-            <div class="col-sm-4"><!--left col-->
+            <div class="col-sm-4">
 
                 <div class="row">
                     <div id="dropzone">
@@ -19,107 +19,159 @@
 
 
                 <ul class="list-group mb-4">
-                    <li class="list-group-item text-muted"><i class="fas fa-chart-line"></i> Activity <i class="fa fa-dashboard fa-1x"></i></li>
-                    <li class="list-group-item text-right"><span class="float-left chart" id="points"><a href="#" class="text-dark"><i class="fas fa-history"></i></a></span><span class="pull-left"><strong>Spend points</strong></span> {{$stat->getSpendPoints()}}</li>
-                    <li class="list-group-item text-right"><span class="float-left chart" id="avgPoints"><a href="#" class="text-dark"><i class="fas fa-history"></i></a></span><span class="pull-left"><strong>Avg bet</strong></span> {{$stat->getAvgBet()}}</li>
-                    <li class="list-group-item text-right"><span class="float-left chart" id="avgChance"><a href="#" class="text-dark"><i class="fas fa-history"></i></a></span><span class="pull-left"><strong>Avg chance</strong></span> {{substr($stat->getAvgChance(),0,6)}}</li>
-                    <li class="list-group-item text-right"><span class="float-left chart" id="bets"><a href="#" class="text-dark"><i class="fas fa-history"></i></a></span><span class="pull-left"><strong>Bets</strong></span> {{$stat->getRealasedBets()}}</li>
+                    <li class="list-group-item text-muted"><i class="fas fa-chart-line"></i> Activity <i
+                            class="fa fa-dashboard fa-1x"></i></li>
+                    <li class="list-group-item text-right"><span class="float-left chart" id="points"><a href="#"
+                                                                                                         class="text-dark"><i
+                                    class="fas fa-history fa-lg"></i></a></span><span
+                            class="pull-left"><strong>Spend points</strong></span> {{$stat->getSpendPoints()}}</li>
+                    <li class="list-group-item text-right"><span class="float-left chart" id="avgPoints"><a href="#"
+                                                                                                            class="text-dark"><i
+                                    class="fas fa-history fa-lg"></i></a></span><span
+                            class="pull-left"><strong>Avg bet</strong></span> {{$stat->getAvgBet()}}</li>
+                    <li class="list-group-item text-right"><span class="float-left chart" id="avgChance"><a href="#"
+                                                                                                            class="text-dark"><i
+                                    class="fas fa-history fa-lg"></i></a></span><span
+                            class="pull-left"><strong>Avg chance</strong></span> {{substr($stat->getAvgChance(),0,6)}}
+                    </li>
+                    <li class="list-group-item text-right"><span class="float-left chart" id="bets"><a href="#"
+                                                                                                       class="text-dark"><i
+                                    class="fas fa-history fa-lg"></i></a></span><span class="pull-left"><strong>Bets</strong></span> {{$stat->getRealasedBets()}}
+                    </li>
                     @if($stat->getWins())
-                    <li class="list-group-item text-right"><span class="float-left" id="wins"><a href="#" class="text-dark"><i class="fas fa-history"></i></a></span><span class="pull-left"><strong>Wins</strong></span> {{$stat->getWins()}}</li>
+                        <li class="list-group-item text-right"><span class="float-left" id="wins"><a href="#"
+                                                                                                     class="text-dark"><i
+                                        class="fas fa-history fa-lg"></i></a></span><span
+                                class="pull-left"><strong>Wins</strong></span> {{$stat->getWins()}}</li>
                     @endif
                 </ul>
 
                 <ul class="list-group mb-4">
-                    <li class="list-group-item text-muted"><i class="fas fa-money-bill"></i> Points <i class="fa fa-dashboard fa-1x"></i></li>
-                    <li class="list-group-item text-right"><span class="float-left"><a href="#" class="text-dark"><i class="fas fa-history"></i></a></span><span class="pull-left"><strong>Frozen</strong></span> {{$stat->getFrozenPoints()}}</li>
-                    <li class="list-group-item text-right"><span class="float-left" id="addPoints"><a href="#" class="text-dark"><i class="fas fa-plus"></i></a></span><span class="pull-left"><strong>Avalible</strong></span> {{$user->points}}</li>
+                    <li class="list-group-item text-muted"><i class="fas fa-money-bill"></i> Points <i
+                            class="fa fa-dashboard fa-lg"></i></li>
+                    <li class="list-group-item text-right"><span class="float-left"><a href="#" class="text-dark"><i
+                                    class="fas fa-history fa-lg"></i></a></span><span
+                            class="pull-left"><strong>Frozen</strong></span> {{$stat->getFrozenPoints()}}</li>
+                    <li class="list-group-item text-right"><span class="float-left" id="addPoints"><a href="#"
+                                                                                                      class="text-dark"><i
+                                    class="fas fa-plus fa-lg"></i></a></span><span class="pull-left"><strong>Avalible</strong></span> {{$user->points}}
+                    </li>
                 </ul>
 
-            </div><!--/col-3-->
+                @if($deliveries)
+                    <li class="list-group-item text-muted"><i class="fas fa-truck-moving"></i> Deliveries <i
+                            class="fa fa-dashboard fa-1x"></i></li>
+                    @foreach($deliveries as $delivery)
+                        <li class="list-group-item text-left">
+                            <span><strong>{{$delivery['product']->name}}</strong></span>
+                            <span class="float-right pl-1">
+                            <a href="/confirm-delivery/{{$delivery['deal']->id}}" class="text-dark">
+                                <i class="fas fa-check-circle fa-lg"></i>
+                            </a>
+                        </span>
+
+                            <span class="float-right pr-1">
+                            <a href="/delivery-info/{{$delivery['deal']->id}}" class="text-dark">
+                                <i class="fas fa-info-circle fa-lg"></i>
+                            </a>
+                        </span>
+                        </li>
+                    @endforeach
+                    <div class="mb-4"></div>
+                @endif
+
+            </div>
             <div class="col-sm-8">
                 <form class="form" action="/update-user" method="post" id="userForm">
                     @csrf
                     <fieldset class="border p-3 mb-4">
-                        <legend class="w-auto"> <i class="fas fa-user-tie"></i> Personal data</legend>
+                        <legend class="w-auto"><i class="fas fa-user-tie"></i> Personal data</legend>
 
-                    <div class="form-group">
+                        <div class="form-group">
 
-                        <div class="col-xs-6">
-                            <label for="name"><h4>First name</h4></label>
-                            <input type="text" class="form-control" name="name" id="name"
-                                   placeholder="first name" value="{{$user->name}}" title="enter your first name if any.">
+                            <div class="col-xs-6">
+                                <label for="name"><h4>First name</h4></label>
+                                <input type="text" class="form-control" name="name" id="name"
+                                       placeholder="first name" value="{{$user->name}}"
+                                       title="enter your first name if any.">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
+                        <div class="form-group">
 
-                        <div class="col-xs-6">
-                            <label for="surname"><h4>Last name</h4></label>
-                            <input type="text" class="form-control" name="surname" id="surname"
-                                   placeholder="last name" value="{{$user->surname}}" title="enter your last name if any.">
+                            <div class="col-xs-6">
+                                <label for="surname"><h4>Last name</h4></label>
+                                <input type="text" class="form-control" name="surname" id="surname"
+                                       placeholder="last name" value="{{$user->surname}}"
+                                       title="enter your last name if any.">
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
+                        <div class="form-group">
 
-                        <div class="col-xs-6">
-                            <label for="email"><h4>Email</h4></label>
-                            <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com"
-                                   value="{{$user->email}}" title="enter your email.">
+                            <div class="col-xs-6">
+                                <label for="email"><h4>Email</h4></label>
+                                <input type="email" class="form-control" name="email" id="email"
+                                       placeholder="you@email.com"
+                                       value="{{$user->email}}" title="enter your email.">
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
+                        <div class="form-group">
 
-                        <div class="col-xs-6">
-                            <label for="phone_number"><h4>Phone</h4></label>
-                            <input type="text" class="form-control" name="phone_number" id="phone_number" placeholder="enter phone"
-                                   value="{{$user->phone_number}}" title="enter your phone number if any.">
+                            <div class="col-xs-6">
+                                <label for="phone_number"><h4>Phone</h4></label>
+                                <input type="text" class="form-control" name="phone_number" id="phone_number"
+                                       placeholder="enter phone"
+                                       value="{{$user->phone_number}}" title="enter your phone number if any.">
+                            </div>
                         </div>
-                    </div>
                     </fieldset>
                     <fieldset class="border p-3 mb-4">
                         <legend class="w-auto"><i class="fas fa-map-marker-alt"></i> Localization</legend>
-                    <div class="form-group">
-                        <div class="col-xs-6">
-                            <label for="city"><h4>City</h4></label>
-                            <input type="text" class="form-control" name="city" id="city"
-                                   value="{{$user->city}}" placeholder="enter city name" title="enter your city name">
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="city"><h4>City</h4></label>
+                                <input type="text" class="form-control" name="city" id="city"
+                                       value="{{$user->city}}" placeholder="enter city name"
+                                       title="enter your city name">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-6">
-                            <label for="street"><h4>Street</h4></label>
-                            <input type="text" class="form-control" name="street" id="street"
-                                   value="{{$user->street}}" placeholder="enter street and number of house" title="enter your street and number of house">
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="street"><h4>Street</h4></label>
+                                <input type="text" class="form-control" name="street" id="street"
+                                       value="{{$user->street}}" placeholder="enter street and number of house"
+                                       title="enter your street and number of house">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-6">
-                            <label for="post_code"><h4>Post code</h4></label>
-                            <input type="text" class="form-control" name="post_code" id="post_code"
-                                   value="{{$user->post_code}}" placeholder="enter post code" title="enter your post code">
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="post_code"><h4>Post code</h4></label>
+                                <input type="text" class="form-control" name="post_code" id="post_code"
+                                       value="{{$user->post_code}}" placeholder="enter post code"
+                                       title="enter your post code">
+                            </div>
                         </div>
-                    </div>
                     </fieldset>
                     <fieldset class="border p-3 mb-4">
                         <legend class="w-auto"><i class="fas fa-key"></i> Reset password</legend>
 
-                    <div class="form-group">
+                        <div class="form-group">
 
-                        <div class="col-xs-6">
-                            <label for="password"><h4>New</h4></label>
-                            <input type="password" class="form-control" name="password" id="password"
-                                   placeholder="password" title="enter your password.">
+                            <div class="col-xs-6">
+                                <label for="password"><h4>New</h4></label>
+                                <input type="password" class="form-control" name="password" id="password"
+                                       placeholder="password" title="enter your password.">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
+                        <div class="form-group">
 
-                        <div class="col-xs-6">
-                            <label for="password2"><h4>Confirm</h4></label>
-                            <input type="password" class="form-control" name="password2" id="password2"
-                                   placeholder="password2" title="enter your password2.">
+                            <div class="col-xs-6">
+                                <label for="password2"><h4>Confirm</h4></label>
+                                <input type="password" class="form-control" name="password2" id="password2"
+                                       placeholder="password2" title="enter your password2.">
+                            </div>
                         </div>
-                    </div>
                     </fieldset>
                     <div class="form-group">
                         <div class="col-xs-12">
@@ -141,13 +193,13 @@
 
         $('.chart').click(function () {
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            var category =$(this).attr('id');
+            var category = $(this).attr('id');
             console.log(category);
             $.ajax({
-                    url: '/analytics' ,
+                    url: '/analytics',
                     dataType: 'json',
                     type: 'post',
-                    data:{_token: CSRF_TOKEN,"category":category},
+                    data: {_token: CSRF_TOKEN, "category": category},
                     success: function (data) {
                         Swal({
                             title: '<strong>You chart</u></strong>',
@@ -186,29 +238,31 @@
                     url: "/file/post",
                     paramName: "file", // The name that will be used to transfer the file
                     maxFiles: 1,
-                    accept: function(file, done) {
+                    accept: function (file, done) {
                         alert('succes');
                         if (file.name == "justinbieber.jpg") {
                             done("Naha, you don't.");
+                        } else {
+                            done();
                         }
-                        else { done(); }
                     }
                 });
         });
-        $("myAwesomeDropzone").dropzone({ url: "/file/post" });
+        $("myAwesomeDropzone").dropzone({url: "/file/post"});
     </script>
 
     <script type="text/javascript">
-            Dropzone.options.myAwesomeDropzone = {
-                paramName: "file", // The name that will be used to transfer the file
-                maxFiles: 1,
-                accept: function(file, done) {
-                    if (file.name == "justinbieber.jpg") {
-                        done("Naha, you don't.");
-                    }
-                    else { done(); }
+        Dropzone.options.myAwesomeDropzone = {
+            paramName: "file", // The name that will be used to transfer the file
+            maxFiles: 1,
+            accept: function (file, done) {
+                if (file.name == "justinbieber.jpg") {
+                    done("Naha, you don't.");
+                } else {
+                    done();
                 }
-            };
+            }
+        };
 
     </script>
 

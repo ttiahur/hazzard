@@ -28,10 +28,10 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/sweetalert2.min.css') }}" rel="stylesheet">
-    <!--<link href="{{ asset('css/material-kit.min.css') }}" rel="stylesheet">-->
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
+<!--<link href="{{ asset('css/material-kit.min.css') }}" rel="stylesheet">-->
     <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
     
     <!--FontAwesome-->

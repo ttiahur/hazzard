@@ -166,6 +166,15 @@ class Bets extends Model
             ->first();
     }
 
+    static public function confirmedBet(){
+        return DB::table('bets')
+            ->where([
+                ['user_id','=', auth()->user()->id],
+                ['status','=',3],
+            ])
+            ->get();
+    }
+
     static public function winBetByDealId($id){
         return DB::table('bets')
             ->where([

@@ -10,6 +10,8 @@ namespace App\Http\Managers;
 
 
 use App\Bets;
+use App\Deals;
+use App\Product;
 use App\User;
 use http\Env\Request;
 use Illuminate\Support\Facades\Hash;
@@ -48,6 +50,26 @@ class UserManager
         }
         $user->save();
         return $user;
+    }
+
+    static public function delivery(){
+        $delivers = [];
+        $bets = Bets::confirmedBet();
+        foreach ($bets as $bet){
+            $deal = Deals::where([
+                ['status',3],
+                ['id', $bet->deal_id]
+            ])->first();
+
+            if ($deal){
+                $delivers[] = [
+                    'deal' => $deal,
+                    'product' => Product::find($deal->product_id),
+                ];
+            }
+        }
+
+        return $delivers;
     }
 
 }

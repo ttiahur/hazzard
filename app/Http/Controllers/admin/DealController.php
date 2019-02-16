@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Bets;
 use App\Category;
 use App\Deals;
+use App\Http\Managers\DealListManager;
 use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -72,4 +73,43 @@ class DealController extends Controller
 
         return view('deal', $data);
     }
+
+    public function dealList(Request $request)
+    {
+        $dealListManager = new DealListManager();
+        $dealList = $dealListManager->getList();
+
+        $data = [
+            'deals' => $dealList
+        ];
+        return view('admin.listDeal', $data);
+    }
+
+    public function confirmBuy(Request $request)
+    {
+        $id = $request->route('id');
+        $deal = Deals::find($id);
+        $deal->status = 3;
+        $deal->save();
+        return redirect('/list-deal');
+    }
+
+    public function confirmDelivery(Request $request)
+    {
+        $id = $request->route('id');
+        $deal = Deals::find($id);
+        $deal->status = 4;
+        $deal->save();
+        return redirect('/account');
+    }
+
+    public function close(Request $request)
+    {
+        $id = $request->route('id');
+        $deal = Deals::find($id);
+        $deal->status = 5;
+        $deal->save();
+        return redirect('/list-deal');
+    }
+
 }

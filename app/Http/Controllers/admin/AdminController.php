@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\admin;
 
+use Composer\Config;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
     public function showDashboard(){
+
         return view('admin.dashboard');
     }
 }

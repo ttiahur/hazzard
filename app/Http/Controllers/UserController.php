@@ -14,11 +14,12 @@ class UserController extends Controller
 {
     public function account(Request $request)
     {
+
         $data = [
             'user' => UserManager::account(),
             'stat' => new UserStatManager(),
+            'deliveries' => UserManager::delivery()
         ];
-//        var_dump($data['stat']);
 
 
         return view('user.account', $data);

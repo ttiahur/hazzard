@@ -22,6 +22,10 @@ Auth::routes();
 Route::post('/add-deal', 'admin\DealController@addDeal');
 Route::get('/add-deal', 'admin\DealController@addDeal');
 Route::get('/deal/{id}', 'admin\DealController@show');
+Route::get('list-deal', 'admin\DealController@dealList');
+Route::get('confirm-buy/{id}', 'admin\DealController@confirmBuy');
+Route::get('confirm-delivery/{id}', 'admin\DealController@confirmDelivery');
+Route::get('close-deal/{id}', 'admin\DealController@close');
 
 //CategoryController
 Route::get('/add-category', 'admin\CategoryController@add');
@@ -36,6 +40,10 @@ Route::get('/add-product', 'admin\ProductController@addProduct');
 Route::post('/add-product', 'admin\ProductController@addProduct');
 Route::get('/get-products/{category_id}', 'admin\ProductController@getProducts');
 Route::get('/dashboard','admin\AdminController@showDashboard')->name('dashboard');
+Route::get('/list-product', 'admin\ProductController@listProduct');
+Route::get('/edit-product/{id}','admin\ProductController@editProduct');
+Route::post('/edit-product/{id}','admin\ProductController@editProduct');
+Route::get('/buy/{id}','admin\ProductController@buyProduct');
 
 Auth::routes();
 
@@ -56,3 +64,4 @@ Route::post('/analytics','UserController@analytics');
 
 //DeliveryController
 Route::post('/confirm-bet','DeliveryController@setAdress');
+
